@@ -10,9 +10,3 @@ app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 app.use("/", rootPage);
-
-app.listen(port, () => {
-  console.log(`Servidor foi iniciado!
-    Link: http://localhost:${port}/
-    `);
-});
