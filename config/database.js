@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
+const url = process.env.URL_DB;
 
 mongoose
-  .connect(process.env.URL_DB, {
+  .connect(url, {
     serverApi: { version: "1", strict: true, deprecationErrors: true },
   })
   .then(() => {
