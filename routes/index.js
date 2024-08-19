@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment-timezone");
 const userName = require("../models/user");
 
 const router = express.Router();
@@ -13,10 +14,14 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  const spNow = moment.tz("America/Sao_Paulo");
   const { name } = req.body;
 
   try {
-    const User = await userName.create({ name, createdAt: new Date() });
+    const User = await userName.create({
+      name,
+      createdAt: spNow.format("DD-MM-YYYY HH:mm:ss"),
+    });
     res.json({ get: "GET", User }).status(200);
   } catch (err) {
     res.json(err);
